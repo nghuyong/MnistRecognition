@@ -5,14 +5,14 @@ from keras.callbacks import TensorBoard
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
-
-from models.config import BaseConfig
 from utils.data_loader import load_data
 
 
-class CNNFcModelConfig(BaseConfig):
+class CNNFcModelConfig():
     def __init__(self):
-        super().__init__()
+        self.num_classes = 10
+        self.img_rows = 28
+        self.img_cols = 28
         self.batch_size = 128
         self.epochs = 3
 

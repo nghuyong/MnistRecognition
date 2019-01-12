@@ -87,8 +87,8 @@ def train(data_set):
         ls = reinforce.train_step(1)
         log_str = "current time:  " + str(datetime.datetime.now().time()) + " episode:  " + str(
             i_episode) + " loss:  " + str(ls) + " last_state:  " + str(state) + " last_reward:  " + str(
-            reward) + "pre_acc:" + str(pre_acc) + "\n"
-        log = open("./models/RL/lg3.txt", "a+")
+            reward) + " pre_acc:" + str(pre_acc) + "\n"
+        log = open("./models/RL/log.txt", "a+")
         log.write(log_str)
         log.close()
         print(log_str)

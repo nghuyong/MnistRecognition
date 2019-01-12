@@ -7,6 +7,7 @@ model: CNN-FC test score: 0.9856
 ## Semi-Supervised Learning
 
 Reference:
+- [Improved Techniques for Training GANs](https://arxiv.org/pdf/1606.03498.pdf)
 - [GAN-semisup-MNIST-Keras](https://github.com/cympfh/GAN-semisup-MNIST-Keras)
 
 ## Reinforcement Learning
@@ -18,8 +19,6 @@ Reference:
 - [The First Step-by-Step Guide for Implementing Neural Architecture Search with Reinforcement Learning Using TensorFlow](https://lab.wallarm.com/the-first-step-by-step-guide-for-implementing-neural-architecture-search-with-reinforcement-99ade71b3d28)
 
 ## Evolutionary Computation
-
-
 
 Reference:
 - [EDEN: Evolutionary Deep Networks for Efficient
