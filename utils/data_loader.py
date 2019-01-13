@@ -48,6 +48,7 @@ class Dataset:
 
 if __name__ == "__main__":
     mnist = Dataset.load_mnist()
+    print(mnist.train.x[0])
     print('train_x shape', mnist.train.x.shape)
     print('train_y shape', mnist.train.y.shape)
     print('validation_x shape', mnist.validation.x.shape)

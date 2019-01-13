@@ -8,8 +8,7 @@ class Trainer:
     # Train with early stopping (as soon as we regress w.r.t. the validation dataset)
     def train(self, network, dataset, batchsize=32):
         path = tempfile.mkdtemp()
-
-        best_accuracy = -1
+        best_accuracy = -10000
         num_backward = 0
         train_batch_size = min(dataset.train.count, batchsize)
         for epoch in range(100):
@@ -17,6 +16,9 @@ class Trainer:
             start = time.time()
             for i in range(dataset.train.count // train_batch_size):
                 network.train_batch(*dataset.train.batch(i, train_batch_size))
+                # if i % 20 == 0:
+                #     network.output_reconstructed_images(dataset.test.batch(0, batchsize)[0],
+                #                                         step=f"{epoch}_{i}")
             accuracy = self.eval(network, dataset.validation, batchsize)
             duration = time.time() - start
             print("Epoch %d Accuracy %f (%.3fs)" % (epoch, accuracy, duration))
