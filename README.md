@@ -93,8 +93,12 @@ The result is the following:
 
 |CNN_1_kernel|CNN_1_kernel|CNN_2_kernel|CNN_2_kernel|Accuracy|Reward|totalReward|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-**5**|**16**|**4**|**32**|**0.9924**|0.1|0.1
-4|16|4|32|0.9916|-0.0008|0.0992
+3|32|2|16|0.9904|0.1|0.1
+**3**|**64**|**5**|**64**|**0.9929**|**0.0025**|0.1025
+5|64|3|32|0.9923|0.0014|0.1039
+5|64|4|32|0.9923|0.00112|0.10502
+3|64|4|16|0.9917|0.0003|0.10532
+4|64|5|16|0.9915|4e-05|**0.10535**
 
 Overview
 
@@ -104,12 +108,6 @@ Overview
 |Using RL,Supervised learning fc|98.300|
 |Supervised learning cnn fc|99.219|
 |Using RL,Supervised learning cnn fc|99.240|
-
-
-
-
-
-
 
 Reference:
 - [Neural Architecture Search with Reinforcement Learning](https://arxiv.org/pdf/1611.01578.pdf)
