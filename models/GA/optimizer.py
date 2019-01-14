@@ -8,7 +8,8 @@ Credit:
 from functools import reduce
 from operator import add
 import random
-from models.GeneticAlgorithm.network import Network
+from network import Network
+
 
 class Optimizer():
     """Class that implements genetic algorithm for MLP optimization."""
@@ -141,7 +142,7 @@ class Optimizer():
         graded = [x[1] for x in sorted(graded, key=lambda x: x[0], reverse=True)]
 
         # Get the number we want to keep for the next gen.
-        retain_length = int(len(graded)*self.retain)
+        retain_length = int(len(graded) * self.retain)
 
         # The parents are every network we want to keep.
         parents = graded[:retain_length]
@@ -160,8 +161,8 @@ class Optimizer():
         while len(children) < desired_length:
 
             # Get a random mom and dad.
-            male = random.randint(0, parents_length-1)
-            female = random.randint(0, parents_length-1)
+            male = random.randint(0, parents_length - 1)
+            female = random.randint(0, parents_length - 1)
 
             # Assuming they aren't the same network...
             if male != female:

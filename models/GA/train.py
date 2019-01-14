@@ -5,14 +5,37 @@ Based on:
     https://github.com/fchollet/keras/blob/master/examples/mnist_mlp.py
 
 """
+from keras.datasets import mnist, cifar10
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.utils.np_utils import to_categorical
 from keras.callbacks import EarlyStopping
-import numpy as np
 
 # Helper: Early stopping.
 early_stopper = EarlyStopping(patience=5)
+
+
+def get_cifar10():
+    """Retrieve the CIFAR dataset and process the data."""
+    # Set defaults.
+    nb_classes = 10
+    batch_size = 64
+    input_shape = (3072,)
+
+    # Get the data.
+    (x_train, y_train), (x_test, y_test) = cifar10.load_data()
+    x_train = x_train.reshape(50000, 3072)
+    x_test = x_test.reshape(10000, 3072)
+    x_train = x_train.astype('float32')
+    x_test = x_test.astype('float32')
+    x_train /= 255
+    x_test /= 255
+
+    # convert class vectors to binary class matrices
+    y_train = to_categorical(y_train, nb_classes)
+    y_test = to_categorical(y_test, nb_classes)
+
+    return (nb_classes, batch_size, input_shape, x_train, x_test, y_train, y_test)
 
 
 def get_mnist():
@@ -23,10 +46,7 @@ def get_mnist():
     input_shape = (784,)
 
     # Get the data.
-    f = np.load('./data/mnist.npz')
-    x_train, y_train = f['x_train'], f['y_train']
-    x_test, y_test = f['x_test'], f['y_test']
-    f.close()
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
     x_train = x_train.reshape(60000, 784)
     x_test = x_test.reshape(10000, 784)
     x_train = x_train.astype('float32')
@@ -79,7 +99,7 @@ def compile_model(network, nb_classes, input_shape):
     return model
 
 
-def train_and_score(network):
+def train_and_score(network, dataset):
     """Train the model, return test loss.
 
     Args:
@@ -87,8 +107,12 @@ def train_and_score(network):
         dataset (str): Dataset to use for training/evaluating
 
     """
-    nb_classes, batch_size, input_shape, x_train, \
-    x_test, y_train, y_test = get_mnist()
+    if dataset == 'cifar10':
+        nb_classes, batch_size, input_shape, x_train, \
+        x_test, y_train, y_test = get_cifar10()
+    elif dataset == 'mnist':
+        nb_classes, batch_size, input_shape, x_train, \
+        x_test, y_train, y_test = get_mnist()
 
     model = compile_model(network, nb_classes, input_shape)
 

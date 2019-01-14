@@ -1,7 +1,7 @@
 """Class that represents the network to be evolved."""
 import random
 import logging
-from models.GeneticAlgorithm.train import train_and_score
+from train import train_and_score
 
 
 class Network():
@@ -38,7 +38,7 @@ class Network():
         """
         self.network = network
 
-    def train(self):
+    def train(self, dataset):
         """Train the network and record the accuracy.
 
         Args:
@@ -46,7 +46,7 @@ class Network():
 
         """
         if self.accuracy == 0.:
-            self.accuracy = train_and_score(self.network)
+            self.accuracy = train_and_score(self.network, dataset)
 
     def print_network(self):
         """Print out a network."""

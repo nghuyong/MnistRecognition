@@ -1,6 +1,6 @@
 """Entry point to evolving the neural network. Start here."""
 import logging
-from models.GeneticAlgorithm.optimizer import Optimizer
+from optimizer import Optimizer
 from tqdm import tqdm
 
 # Setup logging.
@@ -8,11 +8,10 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
     datefmt='%m/%d/%Y %I:%M:%S %p',
     level=logging.DEBUG,
-    filename='log.txt'
 )
 
 
-def train_networks(networks):
+def train_networks(networks, dataset):
     """Train each network.
 
     Args:
@@ -21,7 +20,7 @@ def train_networks(networks):
     """
     pbar = tqdm(total=len(networks))
     for network in networks:
-        network.train()
+        network.train(dataset)
         pbar.update(1)
     pbar.close()
 
@@ -43,7 +42,7 @@ def get_average_accuracy(networks):
     return total_accuracy / len(networks)
 
 
-def generate(generations, population, nn_param_choices):
+def generate(generations, population, nn_param_choices, dataset):
     """Generate a network with the genetic algorithm.
 
     Args:
@@ -62,7 +61,7 @@ def generate(generations, population, nn_param_choices):
                      (i + 1, generations))
 
         # Train and get accuracy for networks.
-        train_networks(networks)
+        train_networks(networks, dataset)
 
         # Get the average accuracy for this generation.
         average_accuracy = get_average_accuracy(networks)
@@ -99,6 +98,7 @@ def main():
     """Evolve a network."""
     generations = 10  # Number of times to evole the population.
     population = 20  # Number of networks in each generation.
+    dataset = 'mnist'
 
     nn_param_choices = {
         'nb_neurons': [64, 128, 256, 512, 768, 1024],
@@ -111,7 +111,7 @@ def main():
     logging.info("***Evolving %d generations with population %d***" %
                  (generations, population))
 
-    generate(generations, population, nn_param_choices)
+    generate(generations, population, nn_param_choices, dataset)
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 """Iterate over every combination of hyperparameters."""
 import logging
-from models.GeneticAlgorithm.network import Network
+from network import Network
 from tqdm import tqdm
 
 # Setup logging.
@@ -8,11 +8,10 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
     datefmt='%m/%d/%Y %I:%M:%S %p',
     level=logging.DEBUG,
-    filename='brute-log.txt'
 )
 
 
-def train_networks(networks):
+def train_networks(networks, dataset):
     """Train each network.
 
     Args:
@@ -21,7 +20,7 @@ def train_networks(networks):
     """
     pbar = tqdm(total=len(networks))
     for network in networks:
-        network.train()
+        network.train(dataset)
         network.print_network()
         pbar.update(1)
     pbar.close()
@@ -81,6 +80,7 @@ def generate_network_list(nn_param_choices):
 
 def main():
     """Brute force test every network."""
+    dataset = 'mnist'
 
     nn_param_choices = {
         'nb_neurons': [64, 128, 256, 512, 768, 1024],
@@ -94,7 +94,7 @@ def main():
 
     networks = generate_network_list(nn_param_choices)
 
-    train_networks(networks)
+    train_networks(networks, dataset)
 
 
 if __name__ == '__main__':
