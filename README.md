@@ -175,6 +175,8 @@ CNN+FC (origin Accuracy 99.219)
 |:---:|:---:|:---:|
 |Time|72.3h|7.6h|
 |CNN Accuracy|99.238|99.239|
+
+
 Reference:
 - [Let’s evolve a neural network with a genetic algorithm](https://blog.coast.ai/lets-evolve-a-neural-network-with-a-genetic-algorithm-code-included-8809bece164)
 - [EDEN: Evolutionary Deep Networks for Efficient
