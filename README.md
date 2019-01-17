@@ -161,7 +161,20 @@ In our neural network case, each child is a combination of a random assortment o
 
 ### Result
 
+FC (origin Accuracy 97.546)
 
+||Brute search | GA search|
+|:---:|:---:|:---:|
+|Time|64.1h|4.3h|
+|FC Accuracy|98.130|98.290|
+
+
+CNN+FC (origin Accuracy 99.219)
+
+||Brute search | GA search|
+|:---:|:---:|:---:|
+|Time|72.3h|7.6h|
+|CNN Accuracy|99.238|99.239|
 Reference:
 - [Let’s evolve a neural network with a genetic algorithm](https://blog.coast.ai/lets-evolve-a-neural-network-with-a-genetic-algorithm-code-included-8809bece164)
 - [EDEN: Evolutionary Deep Networks for Efficient
