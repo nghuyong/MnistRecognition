@@ -1,6 +1,8 @@
 # MnistRecognition
 MNIST handwritten digit recognition system (Artificial Intelligence final project)
 
+[Final doc](./docs/MNIST handwritten digit recognition system.pdf)
+
 ## Supervised Learning
 
 |model|Accuracy|

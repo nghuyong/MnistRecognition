@@ -2,7 +2,8 @@
 import logging
 from optimizer import Optimizer
 from tqdm import tqdm
-
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 # Setup logging.
 logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
